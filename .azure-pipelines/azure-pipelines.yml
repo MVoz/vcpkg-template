@@ -27,20 +27,20 @@ pr:
   autoCancel: false
   branches:
     include:
-#    - master
+    - master/*
 #    - releases/*
-    - azure-pipelines/*
+#    - azure-pipelines/*
 # this is being defined in app-ci pipeline
-resources:
-  pipelines:
-  - pipeline: vcpkg-fork # Name of the pipeline resource
-    source: vcpkg-fork # Name of the triggering pipeline
-    trigger: 
-      branches:
-        include:
+#resources:
+#  pipelines:
+#  - pipeline: vcpkg-fork # Name of the pipeline resource
+#    source: vcpkg-fork # Name of the triggering pipeline
+#    trigger: 
+#      branches:
+#        include:
 #        - releases/*
 #        - master
-        - azure-pipelines/*
+#        - azure-pipelines/*
 jobs:
 - template: windows/run-tests.yml
   parameters:
