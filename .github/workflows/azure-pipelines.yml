@@ -1,0 +1,13 @@
+name: workflow 
+on: push
+
+jobs:
+ deploy-using-azure-pipelines:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Trigger an Azure Pipeline to deploy the app to PRODUCTION'
+      uses: Azure/pipelines@v1
+      with:
+        azure-devops-project-url: 'https://dev.azure.com/Pilot-Group/PKG'
+        azure-pipeline-name: 'PKG' # name of the Azure pipeline to be triggered
+        azure-devops-token: '${{ secrets.AZURE_DEVOPS_TOKEN }}'

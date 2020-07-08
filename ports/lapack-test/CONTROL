@@ -1,0 +1,5 @@
+Source: lapack-test
+Version: 1
+Description: LAPACK — Linear Algebra PACKage http://www.netlib.org/lapack/
+Build-Depends: lapack-reference (!osx)
+

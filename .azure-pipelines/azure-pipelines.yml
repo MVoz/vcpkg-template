@@ -1,0 +1,74 @@
+### specific branch build
+trigger:
+  batch: true
+  branches:
+    include:
+#    - master
+    - azure-pipelines/*
+#    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+#    exclude:
+#    - releases/old*
+#      - refs/tags/{tagname}
+#    exclude:
+#      - refs/tags/{othertagname}
+#  tags:
+#    include:
+#    - v2.*
+#    exclude:
+#    - v2.0
+### A pipeline with no CI trigger
+#trigger: none
+
+### Don't run against PRs
+#pr: none
+pr:
+#- master
+#- releases/*
+  autoCancel: false
+  branches:
+    include:
+#    - master
+#    - releases/*
+    - azure-pipelines/*
+# this is being defined in app-ci pipeline
+resources:
+  pipelines:
+  - pipeline: PKG   # Name of the pipeline resource
+    source: PKG # Name of the triggering pipeline
+    trigger: 
+      branches:
+        include:
+#        - releases/*
+#        - master
+        - azure-pipelines/*
+jobs:
+- template: windows/run-tests.yml
+  parameters:
+    pool:   # this parameter is called `pool`
+      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+- template: windows/azure-pipelines.yml
+  parameters:
+    triplet: x86-windows
+    jobName: x86_windows
+    pool:   # this parameter is called `pool`
+      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+
+- template: windows/azure-pipelines.yml
+  parameters:
+    triplet: x64-windows
+    jobName: x64_windows
+    pool:   # this parameter is called `pool`
+      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+
+#- job: macOS
+#  pool:
+#    vmImage: 'macOS-10.14'
+#  steps:
+#  - template: osx/azure-pipelines.yml
+#  - script: echo hello from macOS
+#- job: Linux
+#  pool:
+#    vmImage: 'ubuntu-18.04'
+#  steps:
+#  - template: linux/azure-pipelines.yml
+#  - script: echo hello from Linux

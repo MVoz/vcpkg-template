@@ -1,0 +1,36 @@
+name: Windows Ruby msys2
+
+on: [push, pull_request]
+
+jobs:
+  msys2:
+    runs-on: windows-2019
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [ 2.4, 2.5, 2.6, 2.7 ]
+
+    steps:
+      - name: repo checkout
+        uses: actions/checkout@v2
+
+      - name: Install Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: ridk version
+        run:  ridk version
+
+      - name: MSYS2 Size & Rename
+        run: |
+          $msys2 = $(ruby.exe -e "STDOUT.write RbConfig::TOPDIR")
+          ruby -v
+          "{0:N2} GB" -f  ((gci $msys2/msys64 -Recurse |measure Length -Sum).sum / [Math]::Pow(1000,3))
+          Rename-Item -Path $msys2/msys64 -NewName "msys64_no"
+
+      - name: ridk version
+        run:  ridk version
+      
+      - name: Install extension gem (requires MSYS2 gcc)
+        run:  gem install jaro_winkler -N
