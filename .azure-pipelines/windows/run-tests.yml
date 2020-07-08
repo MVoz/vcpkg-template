@@ -8,8 +8,7 @@
 #  default: {}
 jobs:
 - job: build
-  pool:
-    name: ${{ parameters.poolName }}
+  pool: ${{ parameters.pool }}
   steps:
 #  - task: printAllVariables@1
 #    displayName: 'Print all variables'
