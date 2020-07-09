@@ -39,8 +39,12 @@ resources:
       branches:
         include:
 #        - releases/*
-        - master/*
+        - master
 #        - azure-pipelines/*
+  repositories:
+    - repository: vcpkg-template
+      type: git
+      name: vcpkg-template
 jobs:
 #- template: windows/run-tests.yml
 #  parameters:
