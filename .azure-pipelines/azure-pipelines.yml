@@ -60,41 +60,40 @@ jobs:
     pool:   # this parameter is called `pool`
       vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
-- template: windows/azure-pipelines.yml
-  parameters:
-    triplet: x64-windows-static
-    jobName: x64_windows_static
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+#- template: windows/azure-pipelines.yml
+#  parameters:
+#    triplet: x64-windows-static
+#    jobName: x64_windows_static
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
-- template: windows/azure-pipelines.yml
-  parameters:
-    triplet: x64-uwp
-    jobName: x64_uwp
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+#- template: windows/azure-pipelines.yml
+#  parameters:
+#    triplet: x64-uwp
+#    jobName: x64_uwp
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
-- template: windows/azure-pipelines.yml
-  parameters:
-    triplet: arm64-windows
-    jobName: arm64_windows
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+#- template: windows/azure-pipelines.yml
+#  parameters:
+#    triplet: arm64-windows
+#    jobName: arm64_windows
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
-- template: windows/azure-pipelines.yml
-  parameters:
-    triplet: arm-uwp
-    jobName: arm_uwp
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+#- template: windows/azure-pipelines.yml
+#  parameters:
+#    triplet: arm-uwp
+#    jobName: arm_uwp
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
-- template: osx/azure-pipelines.yml
-  parameters:
-    pool:   # this parameter is called `pool`
-      vmImage: 'macOS-10.14' # and it's a mapping rather than a string
+#- template: osx/azure-pipelines.yml
+#  parameters:
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'macOS-10.14' # and it's a mapping rather than a string
 
-- template: linux/azure-pipelines.yml
-  parameters:
-    pool:   # this parameter is called `pool`
-      vmImage: 'ubuntu-18.04' # and it's a mapping rather than a string
-
+#- template: linux/azure-pipelines.yml
+#  parameters:
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'ubuntu-18.04' # and it's a mapping rather than a string
