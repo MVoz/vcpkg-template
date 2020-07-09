@@ -26,20 +26,20 @@ jobs:
     displayName: 'Initialize Environment'
     inputs:
       targetType: filePath
-      filePath: 'scripts/azure-pipelines/windows/initialize-environment.ps1'
+      filePath: '.azure-pipelines/windows/initialize-environment.ps1'
 
 #  - task: PowerShell@2
 #    displayName: 'Component installation'
 #    inputs:
 #      targetType: filePath
-#      filePath: 'scripts/azure-pipelines/windows/component.ps1'
+#      filePath: '.azure-pipelines/windows/component.ps1'
 
 #  - task: PowerShell@2
 #    displayName: 'Report on Disk Space'
 #    condition: always()
 #    inputs:
 #      targetType: filePath
-#      filePath: 'scripts/azure-pipelines/windows/disk-space.ps1'
+#      filePath: '.azure-pipelines/windows/disk-space.ps1'
 #  # Note: D: is the Azure machines' temporary disk.
 
   - task: CmdLine@2
@@ -55,7 +55,7 @@ jobs:
     inputs:
       script: |
         :: TRANSITION, get these tools on the VMs next time we roll them
-        set VCPKG_DOWNLOADS=D:\downloads
+        set VCPKG_DOWNLOADS=$(System.DefaultWorkingDirectory)\downloads
         .\vcpkg.exe fetch cmake
         .\vcpkg.exe fetch ninja
         set PATH=D:\downloads\tools\cmake-3.17.2-windows\cmake-3.17.2-win32-x86\bin;D:\downloads\tools\ninja-1.10.0-windows;%PATH%
@@ -91,7 +91,7 @@ jobs:
     displayName: '*** Test Modified Ports and Prepare Test Logs ***'
     inputs:
       failOnStderr: true
-      filePath: 'scripts/azure-pipelines/test-modified-ports.ps1'
+      filePath: '.azure-pipelines/test-modified-ports.ps1'
       arguments: '-Triplet ${{ parameters.triplet }} -BuildReason $(Build.Reason) -ArchivesRoot $(System.ArtifactsDirectory) -WorkingRoot $(System.ArtifactsDirectory) -ArtifactsDirectory $(System.ArtifactsDirectory)'
   - powershell: |
       mkdir -p '$(System.ArtifactsDirectory)\failure-logs'
@@ -101,7 +101,7 @@ jobs:
 #    condition: always()
 #    inputs:
 #      targetType: filePath
-#      filePath: 'scripts/azure-pipelines/windows/disk-space.ps1'
+#      filePath: '.azure-pipelines/windows/disk-space.ps1'
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: ${{ parameters.triplet }} port build failure logs'
     inputs:
@@ -117,7 +117,7 @@ jobs:
     inputs:
       targetType: inline
       script: |
-        $env:VCPKG_DOWNLOADS = "D:\downloads"
+        $env:VCPKG_DOWNLOADS = "$(Build.SourcesDirectory)\downloads"
         ./vcpkg.exe fetch python3
         & $(.\vcpkg fetch python3) .\scripts\file_script.py D:\installed\vcpkg\info\
   - task: PublishBuildArtifacts@1
