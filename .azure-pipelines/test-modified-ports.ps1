@@ -91,7 +91,7 @@ $failureLogs = Join-Path $ArtifactsDirectory 'failure-logs'
 & "./vcpkg$executableExtension" x-ci-clean @commonArgs
 $skipList = . "$PSScriptRoot/generate-skip-list.ps1" `
     -Triplet $Triplet `
-    -BaselineFile "$PSScriptRoot/../ci.baseline.txt" `
+    -BaselineFile "$PSScriptRoot/../scripts/ci.baseline.txt" `
     -SkipFailures:$skipFailures
 
 # WORKAROUND: the x86-windows flavors of these are needed for all cross-compilation, but they are not auto-installed.
