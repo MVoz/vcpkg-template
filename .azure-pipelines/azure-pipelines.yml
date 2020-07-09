@@ -41,10 +41,12 @@ resources:
 #        - releases/*
         - master
 #        - azure-pipelines/*
-  repositories:
-    - repository: vcpkg-template
-      type: git
-      name: vcpkg-template
+
+#  repositories:
+#    - repository: vcpkg-template
+#      type: git
+#      name: vcpkg-template
+
 jobs:
 #- template: windows/run-tests.yml
 #  parameters:
