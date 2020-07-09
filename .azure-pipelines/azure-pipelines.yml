@@ -60,10 +60,11 @@ resources:
 #        - azure-pipelines/*
 
 jobs:
-- template: windows/run-tests.yml
-  parameters:
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+#- template: windows/run-tests.yml
+#  parameters:
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+
 - template: windows/azure-pipelines.yml
   parameters:
     triplet: x86-windows
