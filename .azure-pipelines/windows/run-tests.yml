@@ -2,16 +2,16 @@
 # SPDX-License-Identifier: MIT
 #
 # Builds and runs vcpkg-test.exe for PRs and CIs.
-#parameters:
-#- name: 'pool'
-#  type: object
-#  default: {}
+parameters:
+- name: 'pool'
+  type: object
+  default: {}
 jobs:
 - job: build
   pool: ${{ parameters.pool }}
   steps:
-#  - task: printAllVariables@1
-#    displayName: 'Print all variables'
+  - task: printAllVariables@1
+    displayName: 'Print all variables'
   - task: CmdLine@2
     displayName: "Build and Test vcpkg"
     inputs:
