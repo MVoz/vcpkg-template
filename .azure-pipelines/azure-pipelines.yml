@@ -31,15 +31,16 @@ pr:
 #    - releases/*
 #    - azure-pipelines/*
 # this is being defined in app-ci pipeline
-resources:
-  pipelines:
-  - pipeline: template # Name of the pipeline resource
-    source: vcpkg-template # Name of the triggering pipeline
-    trigger: 
-      branches:
-        include:
+
+#resources:
+#  pipelines:
+#  - pipeline: template # Name of the pipeline resource
+#    source: vcpkg-template # Name of the triggering pipeline
+#    trigger: 
+#      branches:
+#        include:
 #        - releases/*
-        - master
+#        - master
 #        - azure-pipelines/*
 
 #  repositories:
