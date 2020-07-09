@@ -3,8 +3,8 @@ trigger:
   batch: true
   branches:
     include:
-#    - master
-    - azure-pipelines/*
+    - master/*
+#    - azure-pipelines/*
 #    - '*'  # must quote since "*" is a YAML reserved character; we want a string
 #    exclude:
 #    - releases/old*
@@ -27,20 +27,20 @@ pr:
   autoCancel: false
   branches:
     include:
-#    - master
+    - master/*
 #    - releases/*
-    - azure-pipelines/*
+#    - azure-pipelines/*
 # this is being defined in app-ci pipeline
 resources:
   pipelines:
-  - pipeline: PKG   # Name of the pipeline resource
-    source: PKG # Name of the triggering pipeline
+  - pipeline: vcpkg-template # Name of the pipeline resource
+    source: vcpkg-template # Name of the triggering pipeline
     trigger: 
       branches:
         include:
 #        - releases/*
-#        - master
-        - azure-pipelines/*
+        - master/*
+#        - azure-pipelines/*
 jobs:
 - template: windows/run-tests.yml
   parameters:
