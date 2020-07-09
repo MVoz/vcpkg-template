@@ -39,11 +39,12 @@ pr:
 #    name: somerepo
 #    selectable: true
 resources: 
-  repositories: 
-  - repository: vcpkg-fork
-    type: git
-    name: vcpkg-fork
-    selectable: true
+#  repositories: 
+#  - repository: vcpkg-fork
+#    type: git
+#    name: vcpkg-fork
+#    selectable: true
+
 #  pipelines:
 #  - pipeline: somepipeline
 #    source: somepipeline
