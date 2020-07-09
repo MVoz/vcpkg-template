@@ -3,8 +3,8 @@ trigger:
   batch: true
   branches:
     include:
-#    - master
-    - azure-pipelines/*
+    - master/*
+#    - azure-pipelines/*
 #    - '*'  # must quote since "*" is a YAML reserved character; we want a string
 #    exclude:
 #    - releases/old*
