@@ -32,6 +32,11 @@ pr:
 #    - azure-pipelines/*
 # this is being defined in app-ci pipeline
 resources:
+  repositories:
+  - repository: Voskrese
+    type: git
+    name: vcpkg-template
+    selectable: true
   pipelines:
   - pipeline: Pipelines # Name of the pipeline resource
     source: vcpkg-fork # Name of the triggering pipeline
