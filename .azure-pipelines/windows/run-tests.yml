@@ -10,8 +10,8 @@ jobs:
 - job: build
   pool: ${{ parameters.pool }}
   steps:
-  - task: printAllVariables@1
-    displayName: 'Print all variables'
+#  - task: printAllVariables@1
+#    displayName: 'Print all variables'
   - task: CmdLine@2
     displayName: "Build and Test vcpkg"
     inputs:
