@@ -31,11 +31,18 @@ pr:
 #    - releases/*
 #    - azure-pipelines/*
 # this is being defined in app-ci pipeline
+
+#resources:
+#  repositories:
+#  - repository: somerepo
+#    type: git
+#    name: somerepo
+#    selectable: true
 resources:
   repositories:
   - repository: Voskrese
     type: git
-    name: vcpkg-template
+    name: Voskrese
     selectable: true
 #  pipelines:
 #  - pipeline: somepipeline
