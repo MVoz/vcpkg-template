@@ -38,23 +38,23 @@ pr:
 #    type: git
 #    name: somerepo
 #    selectable: true
-resources:
-  repositories:
-  - repository: Voskrese
+resources: 
+  repositories: 
+  - repository: vcpkg-fork
     type: git
-    name: Voskrese
+    name: vcpkg-fork
     selectable: true
 #  pipelines:
 #  - pipeline: somepipeline
 #    source: somepipeline
 #    branch: master
 #    selectable: true
-  pipelines:
+  pipelines: 
   - pipeline: Pipelines # Name of the pipeline resource
     source: Pipelines # Name of the triggering pipeline
     trigger: 
-      branches:
-        include:
+      branches: 
+        include: 
 #        - releases/*
         - master/*
 #        - azure-pipelines/*
