@@ -37,15 +37,21 @@ resources:
     type: git
     name: vcpkg-template
     selectable: true
+#  pipelines:
+#  - pipeline: somepipeline
+#    source: somepipeline
+#    branch: master
+#    selectable: true
   pipelines:
   - pipeline: Pipelines # Name of the pipeline resource
-    source: vcpkg-fork # Name of the triggering pipeline
+    source: Pipelines # Name of the triggering pipeline
     trigger: 
       branches:
         include:
 #        - releases/*
-        - master
+        - master/*
 #        - azure-pipelines/*
+
 jobs:
 - template: windows/run-tests.yml
   parameters:
