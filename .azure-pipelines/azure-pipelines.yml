@@ -50,8 +50,8 @@ resources:
 #    branch: master
 #    selectable: true
   pipelines: 
-  - pipeline: Pipelines # Name of the pipeline resource
-    source: Pipelines # Name of the triggering pipeline
+  - pipeline: vcpkg-template # Name of the pipeline resource
+    source: vcpkg-template # Name of the triggering pipeline
     trigger: 
       branches: 
         include: 
