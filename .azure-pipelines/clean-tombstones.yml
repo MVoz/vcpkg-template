@@ -26,11 +26,11 @@ jobs:
         filePath: scripts/azure-pipelines/linux/initialize-environment.sh
     - bash: rm -rf archives/fail
       displayName: 'Delete archives/fail'
-  - job: osx
-    displayName: 'Clean MacOS Tombstones'
-    pool:
-      name: vcpkgAgentPool
-      demands: Agent.OS -equals Darwin
+#  - job: osx
+#    displayName: 'Clean MacOS Tombstones'
+#    pool:
+#      name: vcpkgAgentPool
+#      demands: Agent.OS -equals Darwin
     steps:
     - task: Bash@3
       displayName: 'Initialize Environment'
