@@ -34,7 +34,7 @@ pr:
 resources:
   pipelines:
   - pipeline: vcpkg-template # Name of the pipeline resource
-    source: vcpkg-template # Name of the triggering pipeline
+#    source: vcpkg-template # Name of the triggering pipeline
     trigger: 
       branches:
         include:
