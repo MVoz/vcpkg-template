@@ -88,6 +88,10 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       WORKING_DIRECTORY ${TOOLPATH}
     )
     _execute_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate;PATH=/usr/bin;pacman-key --refresh-keys"
       WORKING_DIRECTORY ${TOOLPATH}
     )
@@ -106,12 +110,17 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
 #      WORKING_DIRECTORY ${TOOLPATH}
 #    )
 
+#    _execute_process(
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Rc dash --noconfirm"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
+#    _execute_process(
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
+
     _execute_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Rc dash --noconfirm"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
-    _execute_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Sydd --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' pacman"
       WORKING_DIRECTORY ${TOOLPATH}
     )
     _execute_process(
@@ -128,6 +137,10 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
     )
     _execute_process(
       COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    _execute_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Sydd --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' pacman-contrib"
       WORKING_DIRECTORY ${TOOLPATH}
     )
     
