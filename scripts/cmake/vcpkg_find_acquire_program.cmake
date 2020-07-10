@@ -83,7 +83,7 @@ function(vcpkg_find_acquire_program VAR)
       "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-32bit-PDL.zip"
     )
     set(ARCHIVE "strawberry-perl.zip")
-    set(HASH d353d3dc743ebdc6d1e9f6f2b7a6db3c387c1ce6c890bae8adc8ae5deae8404f4c5e3cf249d1e151e7256d4c5ee9cd317e6c41f3b6f244340de18a24b938e0c4)
+    set(HASH d537c747bd5002326db9337617e922f254f790599a5f332da2ec399cca9f9c4c7696f9e7a2aafa40c4b5b71310dcc48d352f43eba37f5119f428c8d1eb898114)
   elseif(VAR MATCHES "NASM")
     set(PROGNAME nasm)
     set(PATHS ${DOWNLOADS}/tools/nasm/nasm-2.14.02)
