@@ -53,12 +53,13 @@ jobs:
 #  parameters:
 #    pool:   # this parameter is called `pool`
 #      vmImage: 'windows-latest'  # and it's a mapping rather than a string
-- template: windows/azure-pipelines.yml
-  parameters:
-    triplet: x86-windows
-    jobName: x86_windows
-    pool:   # this parameter is called `pool`
-      vmImage: 'windows-latest'  # and it's a mapping rather than a string
+
+#- template: windows/azure-pipelines.yml
+#  parameters:
+#    triplet: x86-windows
+#    jobName: x86_windows
+#    pool:   # this parameter is called `pool`
+#      vmImage: 'windows-latest'  # and it's a mapping rather than a string
 
 - template: windows/azure-pipelines.yml
   parameters:
