@@ -21,6 +21,8 @@ jobs:
 #    value: $(debug)
     value: true
     readonly: false
+  - name: agent.diagnostic
+    value: true
   steps:
   - task: PowerShell@2
     displayName: 'Initialize Environment'
