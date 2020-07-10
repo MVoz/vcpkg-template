@@ -27,7 +27,10 @@ jobs:
     inputs:
       targetType: filePath
       filePath: '.azure-pipelines/windows/initialize-environment.ps1'
-
+  - powershell: |
+      mkdir -p '$(System.ArtifactsDirectory)\failure-logs'
+  - powershell: |
+      mkdir -p '$(System.ArtifactsDirectory)\xml-results'
 #  - task: PowerShell@2
 #    displayName: 'Component installation'
 #    inputs:
@@ -93,10 +96,6 @@ jobs:
       failOnStderr: true
       filePath: '.azure-pipelines/test-modified-ports.ps1'
       arguments: '-Triplet ${{ parameters.triplet }} -BuildReason $(Build.Reason) -ArchivesRoot $(System.ArtifactsDirectory) -WorkingRoot $(System.ArtifactsDirectory) -ArtifactsDirectory $(System.ArtifactsDirectory)'
-  - powershell: |
-      mkdir -p '$(System.ArtifactsDirectory)\failure-logs'
-  - powershell: |
-      mkdir -p '$(System.ArtifactsDirectory)\xml-results'
 #  - task: PowerShell@2
 #    displayName: 'Report on Disk Space After Build'
 #    condition: always()
