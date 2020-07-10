@@ -3,7 +3,8 @@ trigger:
   batch: true
   branches:
     include:
-    - master/*
+    - master
+#    - releases/*
 #    - azure-pipelines/*
 #    - '*'  # must quote since "*" is a YAML reserved character; we want a string
 #    exclude:
@@ -11,6 +12,14 @@ trigger:
 #      - refs/tags/{tagname}
 #    exclude:
 #      - refs/tags/{othertagname}
+
+# specific path build
+#  paths:
+#    include:
+#    - docs/*
+#    exclude:
+#    - docs/README.md
+
 #  tags:
 #    include:
 #    - v2.*
