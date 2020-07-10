@@ -118,6 +118,19 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --ask=20 --disable-download-timeout --overwrite '*'"
       WORKING_DIRECTORY ${TOOLPATH}
     )
+    _execute_process(
+      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    _execute_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --ask=20 --disable-download-timeout --overwrite '*'"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    _execute_process(
+      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    
     file(WRITE "${TOOLPATH}/${STAMP}" "0")
     message(STATUS "Acquiring MSYS2... OK")
 
