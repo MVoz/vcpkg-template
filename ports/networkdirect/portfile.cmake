@@ -20,7 +20,10 @@ if(NOT EXISTS "${SOURCE_PATH}/.git")
     )
 endif()
 
-
+vcpkg_apply_patches(
+    SOURCE_PATH ${SOURCE_PATH}
+    PATCHES patch_v2.patch
+)
 
 file(REMOVE_RECURSE ${SOURCE_PATH}/.build/Local/CBTModules/CBTModules.proj)
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/packages.config DESTINATION ${SOURCE_PATH}/.build/Local/CBTModules)
@@ -44,7 +47,6 @@ vcpkg_install_msbuild(
         "/p:PlatformToolset=WindowsUserModeDriver10.0"
 #        "/p:BasePlatformToolset=${VCPKG_PLATFORM_TOOLSET}"
         "/p:VCToolsVersion=$ENV{VCToolsVersion}" #upper and lower case must be observed
-        "/p:TreatWarningAsError=false"
     LICENSE_SUBPATH LICENSE.txt
 )
 
