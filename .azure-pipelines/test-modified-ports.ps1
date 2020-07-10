@@ -39,7 +39,8 @@ Param(
     $BuildReason = $null
 )
 
-.\vcpkg.exe integrate install
+#test only windows
+& "./vcpkg$executableExtension" integrate install
 
 if (-Not (Test-Path "triplets/$Triplet.cmake")) {
     Write-Error "Incorrect triplet '$Triplet', please supply a valid triplet."
