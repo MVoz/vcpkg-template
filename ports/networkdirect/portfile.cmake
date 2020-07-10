@@ -47,6 +47,7 @@ vcpkg_install_msbuild(
         "/p:PlatformToolset=WindowsUserModeDriver10.0"
 #        "/p:BasePlatformToolset=${VCPKG_PLATFORM_TOOLSET}"
         "/p:VCToolsVersion=$ENV{VCToolsVersion}" #upper and lower case must be observed
+    USE_VCPKG_INTEGRATION
     LICENSE_SUBPATH LICENSE.txt
 )
 
