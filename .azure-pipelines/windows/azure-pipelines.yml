@@ -27,7 +27,9 @@ jobs:
     inputs:
       targetType: filePath
       filePath: '.azure-pipelines/windows/initialize-environment.ps1'
+  - powershell: |
       mkdir -p '$(System.ArtifactsDirectory)\failure-logs'
+
 #  - task: PowerShell@2
 #    displayName: 'Component installation'
 #    inputs:
