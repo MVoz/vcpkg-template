@@ -91,12 +91,6 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    # Remove database lock
-    SET(DB_LOCK_PATH ${PATH_TO_ROOT}/var/lib/pacman/db.lck)
-    if (EXISTS "${DB_LOCK_PATH}")
-      message(STATUS "${DB_LOCK_PATH} exists --- deleting it")
-      file(REMOVE "${DB_LOCK_PATH}")
-    endif()
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate;PATH=/usr/bin;pacman-key --refresh-keys"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -133,6 +127,12 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
       WORKING_DIRECTORY ${TOOLPATH}
     )
+    # Remove database lock
+    SET(DB_LOCK_PATH ${PATH_TO_ROOT}/var/lib/pacman/db.lck)
+    if (EXISTS "${DB_LOCK_PATH}")
+      message(STATUS "${DB_LOCK_PATH} exists --- deleting it")
+      file(REMOVE "${DB_LOCK_PATH}")
+    endif()
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --ask=20 --disable-download-timeout --overwrite '*'"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -157,12 +157,7 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND taskkill /F /IM gpg-agent.exe /fi "memusage gt 2"
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    # Remove database lock
-    SET(DB_LOCK_PATH ${PATH_TO_ROOT}/var/lib/pacman/db.lck)
-    if (EXISTS "${DB_LOCK_PATH}")
-      message(STATUS "${DB_LOCK_PATH} exists --- deleting it")
-      file(REMOVE "${DB_LOCK_PATH}")
-    endif()
+
     file(WRITE "${TOOLPATH}/${STAMP}" "0")
     message(STATUS "Acquiring MSYS2... OK")
   endif()
