@@ -6,8 +6,9 @@ jobs:
   pool:
 #    name: ${{ parameters.pool.vmImage }}
     vmImage: 'windows-latest'
-  workspace:
-    clean: resources
+    parallel: 10
+#  workspace:
+#    clean: resources
   timeoutInMinutes: 1440 # 1 day
 #  strategy:
 #  maxParallel: 1
