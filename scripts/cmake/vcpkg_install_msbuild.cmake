@@ -125,7 +125,7 @@ function(vcpkg_install_msbuild)
         set(_csc_TARGET ReBuild)
     endif()
 
-    set(ENV{_CL_} "/FS /MP${VCPKG_CONCURRENCY}")
+    set(ENV{_CL_} "W4 WX- /FS /MP${VCPKG_CONCURRENCY}")
 
     list(APPEND _csc_OPTIONS
         /t:${_csc_TARGET}
