@@ -82,7 +82,7 @@ function(vcpkg_find_acquire_program VAR)
           "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-32bit-PDL.zip"
           )
         set(ARCHIVE "strawberry-perl-32bit.zip")
-        set(HASH d353d3dc743ebdc6d1e9f6f2b7a6db3c387c1ce6c890bae8adc8ae5deae8404f4c5e3cf249d1e151e7256d4c5ee9cd317e6c41f3b6f244340de18a24b938e0c4)
+        set(HASH d537c747bd5002326db9337617e922f254f790599a5f332da2ec399cca9f9c4c7696f9e7a2aafa40c4b5b71310dcc48d352f43eba37f5119f428c8d1eb898114)
       else()
         set(SUBDIR "x64")
         set(URL 
@@ -91,7 +91,7 @@ function(vcpkg_find_acquire_program VAR)
           "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit-PDL.zip"
           )
         set(ARCHIVE "strawberry-perl-64bit.zip")
-        set(HASH d353d3dc743ebdc6d1e9f6f2b7a6db3c387c1ce6c890bae8adc8ae5deae8404f4c5e3cf249d1e151e7256d4c5ee9cd317e6c41f3b6f244340de18a24b938e0c4)
+        set(HASH c749c91487af627d363149eba78070278a79bdcb6b298ae74e05500d0e32c251712252b0928a08396949154bf913767ea8d09b1adeb2a224bea34023a4913e40)
       endif()
       set(PATHS ${DOWNLOADS}/tools/perl/${SUBDIR}/perl/bin)
     else()
