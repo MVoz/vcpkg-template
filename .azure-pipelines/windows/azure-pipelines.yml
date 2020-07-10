@@ -57,8 +57,6 @@ jobs:
       script: |
         set VCPKG_DOWNLOADS=$(System.DefaultWorkingDirectory)\downloads
         .\bootstrap-vcpkg.bat
-      run: |
-        .\vcpkg integrate install
 
 #  - task: CmdLine@2
 #    displayName: "Build vcpkg with CMake and Run Tests"
@@ -146,8 +144,10 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: 'Publish Pipeline Artifact: ${{ parameters.triplet }} port'
     inputs:
+      mkdir -p '$(Build.SourcesDirectory)\archives'
 #      publishLocation: 'filePath'
 #      fileSharePath: '$(Pipeline.Workspace)/artifact/**/' #and $(Build.SourcesDirectory) and $(Agent.BuildDirectory)
+
       fileSharePath: '$(Pipeline.Workspace)' #and $(Build.SourcesDirectory) and $(Agent.BuildDirectory)
       targetPath: '$(Build.SourcesDirectory)\archives'
       ArtifactName: '${{ parameters.triplet }}'
