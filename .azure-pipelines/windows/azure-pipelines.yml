@@ -13,7 +13,7 @@ jobs:
 #  ContinueOnError: False
 #    CancelTimeoutInMinutes: 10
 #  Expand:
-  MaxConcurrency: 10
+#    MaxConcurrency: 10
   strategy:
     maxParallel: 2
 #  strategy:
