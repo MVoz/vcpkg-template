@@ -14,7 +14,8 @@ jobs:
 #    CancelTimeoutInMinutes: 10
 #    Expand:
 #      MaxConcurrency: 10
-
+  strategy:
+    maxParallel: 2
 #  strategy:
 #  maxParallel: 1
 #  matrix:
