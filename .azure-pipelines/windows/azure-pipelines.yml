@@ -27,10 +27,11 @@ jobs:
     inputs:
       targetType: filePath
       filePath: '.azure-pipelines/windows/initialize-environment.ps1'
-  - powershell: |
+#  - powershell: |
       mkdir -p '$(System.ArtifactsDirectory)\failure-logs'
-  - powershell: |
-      mkdir -p '$(System.ArtifactsDirectory)\xml-results'
+#  - powershell: |
+#      mkdir -p '$(System.ArtifactsDirectory)\xml-results'
+
 #  - task: PowerShell@2
 #    displayName: 'Component installation'
 #    inputs:
