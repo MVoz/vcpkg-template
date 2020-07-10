@@ -83,10 +83,11 @@ else {
 }
 
 $xmlResults = Join-Path $ArtifactsDirectory 'xml-results'
-mkdir $xmlResults
+mkdir -p $xmlResults
 $xmlFile = Join-Path $xmlResults "$Triplet.xml"
 
 $failureLogs = Join-Path $ArtifactsDirectory 'failure-logs'
+mkdir -p $failureLogs
 
 & "./vcpkg$executableExtension" x-ci-clean @commonArgs
 $skipList = . "$PSScriptRoot/generate-skip-list.ps1" `
