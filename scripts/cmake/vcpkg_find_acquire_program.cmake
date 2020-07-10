@@ -72,18 +72,33 @@ function(vcpkg_find_acquire_program VAR)
   endif()
 
   if(VAR MATCHES "PERL")
-    set(PROGNAME perl)
-    set(PATHS ${DOWNLOADS}/tools/perl/perl/bin)
-    set(BREW_PACKAGE_NAME "perl")
-    set(APT_PACKAGE_NAME "perl")
-    set(URL 
-#      "https://strawberry.perl.bot/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
-#      "http://strawberryperl.com/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
-#      "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit-PDL.zip"
-      "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-32bit-PDL.zip"
-    )
-    set(ARCHIVE "strawberry-perl.zip")
-    set(HASH d537c747bd5002326db9337617e922f254f790599a5f332da2ec399cca9f9c4c7696f9e7a2aafa40c4b5b71310dcc48d352f43eba37f5119f428c8d1eb898114)
+    if(CMAKE_HOST_WIN32)
+      set(PROGNAME perl)
+      if (VCPKG_TARGET_ARCHITECTURE STREQUAL x86)
+        set(SUBDIR "x86")
+        set(URL 
+#          "https://strawberry.perl.bot/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
+#          "http://strawberryperl.com/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
+          "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-32bit-PDL.zip"
+          )
+        set(ARCHIVE "strawberry-perl-32bit.zip")
+        set(HASH d353d3dc743ebdc6d1e9f6f2b7a6db3c387c1ce6c890bae8adc8ae5deae8404f4c5e3cf249d1e151e7256d4c5ee9cd317e6c41f3b6f244340de18a24b938e0c4)
+      else()
+        set(SUBDIR "x64")
+        set(URL 
+#          "https://strawberry.perl.bot/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
+#          "http://strawberryperl.com/download/5.30.0.1/strawberry-perl-5.30.0.1-32bit.zip"
+          "http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit-PDL.zip"
+          )
+        set(ARCHIVE "strawberry-perl-64bit.zip")
+        set(HASH d353d3dc743ebdc6d1e9f6f2b7a6db3c387c1ce6c890bae8adc8ae5deae8404f4c5e3cf249d1e151e7256d4c5ee9cd317e6c41f3b6f244340de18a24b938e0c4)
+      endif()
+      set(PATHS ${DOWNLOADS}/tools/perl/${SUBDIR}/perl/bin)
+    else()
+      set(PROGNAME perl)
+      set(BREW_PACKAGE_NAME "perl")
+      set(APT_PACKAGE_NAME "perl")
+    endif()
   elseif(VAR MATCHES "NASM")
     set(PROGNAME nasm)
     set(PATHS ${DOWNLOADS}/tools/nasm/nasm-2.14.02)
