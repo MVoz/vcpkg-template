@@ -1,3 +1,0 @@
-Source: winiconv
-Version: 0.0.8
-Description: iconv implementation using Win32 API to convert.

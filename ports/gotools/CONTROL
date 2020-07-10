@@ -1,4 +1,0 @@
-Source: gotools
-Version: 4.4.0
-Description: GoTools Geometry Toolkit - IMPORTANT INFO: Please see the README further down.
-Build-Depends: pugixml

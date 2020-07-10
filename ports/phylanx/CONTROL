@@ -1,6 +1,0 @@
-Source: phylanx
-Version: 
-#Homepage: 
-Description: 
-Build-Depends: blaze-tensor, blaze, hpx, blazeiterative
-#Feature: 

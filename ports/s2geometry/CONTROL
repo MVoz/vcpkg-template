@@ -1,9 +1,0 @@
-Source: s2geometry
-Version: 
-#Homepage: 
-Description: 
-Build-Depends: gtest, glog, gflags, openssl
-#Default-Features: 
-#Feature: 
-#Description: 
-#Build-Depends: 

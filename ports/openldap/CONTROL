@@ -1,6 +1,0 @@
-Source: openldap
-Version: 2.4.47
-#Homepage: 
-Description: 
-Build-Depends: openssl-windows, cyrus-sasl
-#Feature: 

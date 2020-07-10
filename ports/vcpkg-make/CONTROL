@@ -1,3 +1,0 @@
-Source: vcpkg-make
-Version: 2
-Description: Metaport to mark make dependent ports and trigger rebuilds of all those ports

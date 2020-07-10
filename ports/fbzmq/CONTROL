@@ -1,6 +1,0 @@
-Source: fbzmq
-Version: 
-#Homepage: 
-Description: 
-Build-Depends: fizz, libsodium
-#Feature: 

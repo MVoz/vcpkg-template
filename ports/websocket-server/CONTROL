@@ -1,4 +1,0 @@
-Source: websocket-server
-Version:
-Build-Depends: boost-uuid, async-tcp
-Description:

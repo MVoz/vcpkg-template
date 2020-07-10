@@ -1,6 +1,0 @@
-Source: xsdcxx-musicxml
-Version: 
-#Homepage: 
-Description: 
-Build-Depends: xerces-c, libxsd
-#Feature: 
