@@ -48,10 +48,10 @@ vcpkg_install_msbuild(
 #      /p:TargetFramework=net472
 #      /t:RestoreModules
       /p:UseEnv=True
-      LICENSE_SUBPATH LICENSE.txt
-      INCLUDES_SUBPATH src/include
-      ALLOW_ROOT_INCLUDES ON
-      USE_VCPKG_INTEGRATION
+    USE_VCPKG_INTEGRATION
+    INCLUDES_SUBPATH src/include
+    ALLOW_ROOT_INCLUDES ON
+    LICENSE_SUBPATH LICENSE.txt
 )
 
 set(VCPKG_POLICY_EMPTY_PACKAGE enabled) # automatic templates
