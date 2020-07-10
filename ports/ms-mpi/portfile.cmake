@@ -45,15 +45,15 @@
 #vcpkg_check_linkage(ONLY_DYNAMIC_LIBRARY ONLY_DYNAMIC_CRT)
 ###
 
-#ñîçäàåì ïóñòîé ðåïîçèòîð
+#Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã¯Ã³Ã±Ã²Ã®Ã© Ã°Ã¥Ã¯Ã®Ã§Ã¨Ã²Ã®Ã°
 #git init .
-#äîáàâëÿåì â íåãî âñå ôàéëû
+#Ã¤Ã®Ã¡Ã Ã¢Ã«Ã¿Ã¥Ã¬ Ã¢ Ã­Ã¥Ã£Ã® Ã¢Ã±Ã¥ Ã´Ã Ã©Ã«Ã»
 #git add .
-#ñîçäàåì áðàí÷\êîììèò\òî÷êó
+#Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã¡Ã°Ã Ã­Ã·\ÃªÃ®Ã¬Ã¬Ã¨Ã²\Ã²Ã®Ã·ÃªÃ³
 #git commit -m "patch"
 
-#ðåäàêòèðóåì ôàéëû
-#è ñîçäàåì ïàò÷ íà îñíîâå êîììèò
+#Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã³Ã¥Ã¬ Ã´Ã Ã©Ã«Ã»
+#Ã¨ Ã±Ã®Ã§Ã¤Ã Ã¥Ã¬ Ã¯Ã Ã²Ã· Ã­Ã  Ã®Ã±Ã­Ã®Ã¢Ã¥ ÃªÃ®Ã¬Ã¬Ã¨Ã²
 #git diff > ..\..\..\..\ports\ms-mpi\patch.patch
 
 #git init . && git add . && git commit -m "patch"
@@ -198,6 +198,14 @@ endif()
 #msbuild build-package.proj /t:Clean;BeforeBuild
 #msbuild build.proj /t:Build
 #msbuild build-package.proj /t:PreparePackage;Package
+
+
+
+vcpkg_apply_patches(
+    SOURCE_PATH ${SOURCE_PATH}
+    PATCHES patch.patch
+)
+
 vcpkg_acquire_msys(MSYS_ROOT PACKAGES mingw-w64-x86_64-gcc-libgfortran mingw-w64-x86_64-gcc-fortran mingw-w64-x86_64-gcc-objc mingw-w64-x86_64-gcc-ada)
 #set(GFORTRAN_BIN "${MSYS_ROOT}/mingw64/bin/")
 vcpkg_add_to_path("${MSYS_ROOT}/mingw64/bin")
