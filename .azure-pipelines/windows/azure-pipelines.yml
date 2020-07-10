@@ -127,7 +127,7 @@ jobs:
       script: |
         $env:VCPKG_DOWNLOADS = "$(Build.SourcesDirectory)\downloads"
         ./vcpkg.exe fetch python3
-        & $(.\vcpkg fetch python3) .\scripts\file_script.py D:\installed\vcpkg\info\
+        & $(.\vcpkg fetch python3) .\scripts\file_script.py $(Build.SourcesDirectory)\installed\vcpkg\info\
   - task: PublishBuildArtifacts@1
     displayName: 'Upload file lists for all packages'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
