@@ -34,10 +34,7 @@ else()
     set(BUILD_ARCH ${TRIPLET_SYSTEM_ARCH})
 endif()
 
-#set(TargetsPath ${DOWNLOADS}/tools/VCTargetsPath)
-#set(VS_PLATFORM_TOOLSET "WindowsDriverKit,VCTargetsPath=${DOWNLOADS}/tools/VCTargetsPath/Microsoft/VC/v160,host=x64")
 set(VS_PLATFORM_TOOLSET "WindowsDriverKit")
-#set(VS_PLATFORM_TOOLSET_VCTARGETS_CUSTOM_DIR "${DOWNLOADS}/tools/VCTargetsPath/Microsoft/VC/v160")
 
 vcpkg_install_msbuild(
     SOURCE_PATH ${SOURCE_PATH}
@@ -51,7 +48,7 @@ vcpkg_install_msbuild(
     LICENSE_SUBPATH LICENSE.txt
 )
 
-file(COPY ${CMAKE_CURRENT_LIST_DIR}/ndsupport.h DESTINATION ${CURRENT_PACKAGES_DIR}) 
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/ndsupport.h DESTINATION ${CURRENT_PACKAGES_DIR}/include) 
 
 file(COPY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/${PORT}/out/Release-${BUILD_ARCH}/include" DESTINATION ${CURRENT_PACKAGES_DIR})
 file(REMOVE_RECURSE 
