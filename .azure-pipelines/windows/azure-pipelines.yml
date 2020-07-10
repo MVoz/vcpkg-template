@@ -126,6 +126,8 @@ jobs:
         $env:VCPKG_DOWNLOADS = "$(Build.SourcesDirectory)\downloads"
         ./vcpkg.exe fetch python3
         & $(.\vcpkg fetch python3) .\scripts\file_script.py $(Build.SourcesDirectory)\installed\vcpkg\info\
+        mkdir -p '$(Build.SourcesDirectory)\archives'
+
   - task: PublishBuildArtifacts@1
     displayName: 'Upload file lists for all packages'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
@@ -144,7 +146,6 @@ jobs:
   - task: PublishPipelineArtifact@1
     displayName: 'Publish Pipeline Artifact: ${{ parameters.triplet }} port'
     inputs:
-      mkdir -p '$(Build.SourcesDirectory)\archives'
 #      publishLocation: 'filePath'
 #      fileSharePath: '$(Pipeline.Workspace)/artifact/**/' #and $(Build.SourcesDirectory) and $(Agent.BuildDirectory)
 
