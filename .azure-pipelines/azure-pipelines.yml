@@ -4,9 +4,9 @@ trigger:
   branches:
     include:
     - master/*
-#    - releases/*
+    - releases/*
 #    - azure-pipelines/*
-#    - '*'  # must quote since "*" is a YAML reserved character; we want a string
+    - '*' # must quote since "*" is a YAML reserved character; we want a string
 #    exclude:
 #    - releases/old*
 #      - refs/tags/{tagname}
