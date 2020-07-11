@@ -1,6 +1,6 @@
 Source: ms-mpi
 Version: 1.0.2
- Port-Version: 1
+ Port-Version: 2
 #Homepage: 
 Description: 
 Build-Depends: networkdirect
