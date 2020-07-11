@@ -8,6 +8,6 @@ jobs:
     - name: 'Trigger an Azure Pipeline to deploy the app to PRODUCTION'
       uses: Azure/pipelines@v1
       with:
-        azure-devops-project-url: 'https://dev.azure.com/Pilot-Group/PKG'
-        azure-pipeline-name: 'PKG' # name of the Azure pipeline to be triggered
+        azure-devops-project-url: 'https://dev.azure.com/pilot-group-0/vcpkg-fork'
+        azure-pipeline-name: 'vcpkg-template' # name of the Azure pipeline to be triggered
         azure-devops-token: '${{ secrets.AZURE_DEVOPS_TOKEN }}'
