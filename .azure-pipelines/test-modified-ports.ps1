@@ -92,6 +92,9 @@ $xmlFile = Join-Path $xmlResults "$Triplet.xml"
 $failureLogs = Join-Path $ArtifactsDirectory 'failure-logs'
 mkdir -p $failureLogs
 
+$archives = Join-Path $ArtifactsDirectory 'archives'
+mkdir -p $archives
+
 & "./vcpkg$executableExtension" x-ci-clean @commonArgs
 $skipList = . "$PSScriptRoot/generate-skip-list.ps1" `
     -Triplet $Triplet `
