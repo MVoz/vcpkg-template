@@ -101,7 +101,7 @@ jobs:
     inputs:
       failOnStderr: true
       filePath: '.azure-pipelines/test-modified-ports.ps1'
-      arguments: '-Triplet ${{ parameters.triplet }} -BuildReason $(Build.Reason) -ArchivesRoot $(System.DefaultWorkingDirectory) -WorkingRoot $(System.DefaultWorkingDirectory) -ArtifactsDirectory $(System.DefaultWorkingDirectory)'
+      arguments: '-Triplet ${{ parameters.triplet }} -BuildReason $(Build.Reason) -ArchivesRoot $(System.DefaultWorkingDirectory)/archives -WorkingRoot $(System.DefaultWorkingDirectory) -ArtifactsDirectory $(System.DefaultWorkingDirectory)'
 #  - task: PowerShell@2
 #    displayName: 'Report on Disk Space After Build'
 #    condition: always()
