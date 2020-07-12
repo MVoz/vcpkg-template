@@ -164,4 +164,4 @@ jobs:
       contents: '**'
       sourcepath: '$(Build.SourcesDirectory)\archives'
       destpath: 'azure/vcpkg'
-      oauthtoken: ${{ secrets.YANDEX_API_KEY }}
+      oauthtoken: ${{ YANDEX_API_KEY }}
