@@ -20,7 +20,7 @@ jobs:
     - name: Configure & Environment
       run: |
         cmake -E make_directory toolsrc/build
-        cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CONFIGURATION_TYPES=Debug;Release -DCMAKE_CXX_FLAGS="-Werror"
+        cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release# -DCMAKE_CONFIGURATION_TYPES=Debug;Release -DCMAKE_CXX_FLAGS="-Werror"
     - name: Build
       working-directory: ${{runner.workspace}}/vcpkg-template/toolsrc/build
       run: cmake --build . --config Release
