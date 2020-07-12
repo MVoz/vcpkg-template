@@ -20,9 +20,7 @@ jobs:
     - name: Configure & Environment
       run: |
         cmake -E make_directory toolsrc/build
-        export CFLAGS=-Wno-error
-        export CXXFLAGS=-Wno-error
-        cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release
+        cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-Wno-error -Wno-unknown-pragmas -Wno-unused-parameter -fPIC" -DCMAKE_CXX_FLAGS="-Wno-error -Wno-unknown-pragmas -Wno-unused-parameter -fPIC"
       # -DCMAKE_CONFIGURATION_TYPES=Debug;Release 
     - name: Build
       working-directory: ${{runner.workspace}}/vcpkg-template/toolsrc/build
