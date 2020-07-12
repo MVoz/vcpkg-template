@@ -21,10 +21,25 @@ jobs:
       run: |
         cmake -E make_directory toolsrc/build
         cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release
-      # -DCMAKE_CONFIGURATION_TYPES=Debug;Release 
     - name: Build
       working-directory: ${{runner.workspace}}/vcpkg-template/toolsrc/build
       run: |
-        CFLAGS=-Wno-error
-        CXXFLAGS=-Wno-error
+        cmake --build . --config Release
+        
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        repository: ''
+        clean: ''
+    - name: Configure & Environment
+      run: |
+        call "${{ matrix.vcvarsall }}" x64
+        cmake -E make_directory toolsrc/build
+        cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release
+    - name: Build
+      working-directory: ${{runner.workspace}}/vcpkg-template/toolsrc/build
+      run: |
         cmake --build . --config Release
