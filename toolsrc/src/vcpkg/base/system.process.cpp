@@ -1,13 +1,13 @@
 #include "pch.h"
 
-#include <ctime>
-
 #include <vcpkg/base/checks.h>
 #include <vcpkg/base/chrono.h>
 #include <vcpkg/base/system.debug.h>
 #include <vcpkg/base/system.h>
 #include <vcpkg/base/system.process.h>
 #include <vcpkg/base/util.h>
+
+#include <ctime>
 
 #if defined(__APPLE__)
 #include <mach-o/dyld.h>
@@ -309,6 +309,7 @@ namespace vcpkg
             L"CUDA_PATH_V10_0",
             L"CUDA_PATH_V10_1",
             L"CUDA_PATH_V10_2",
+            L"CUDA_PATH_V11_0",
             L"CUDA_TOOLKIT_ROOT_DIR",
             L"CUDNN_ROOT",
             // Environmental variable generated automatically by CUDA after installation
