@@ -64,13 +64,13 @@ if(MSVC)
     endif()
 else()
     if(VCPKG_DEVELOPMENT_WARNINGS)
-        add_compile_options(-Wall -Wextra -Wpedantic -Wno-unknown-pragmas -Wno-missing-field-initializers -Wno-redundant-move)
+        add_compile_options(-Wall -Wextra -Wpedantic -Wno-unknown-pragmas -Wno-missing-field-initializers)
 
         # GCC and clang have different names for the same warning
         if(VCPKG_COMPILER STREQUAL "gcc")
             add_compile_options(-Wmissing-declarations)
         elseif(VCPKG_COMPILER STREQUAL "clang")
-            add_compile_options(-Wmissing-prototypes)
+            add_compile_options(-Wmissing-prototypes -Wno-redundant-move)
         endif()
     endif()
 
