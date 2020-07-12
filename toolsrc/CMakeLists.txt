@@ -75,7 +75,7 @@ else()
     endif()
 
     if(VCPKG_WARNINGS_AS_ERRORS)
-        add_compile_options(-Werror)
+        add_compile_options(-Wno-error)
     endif()
 endif()
 
