@@ -20,8 +20,8 @@ jobs:
     - name: Configure & Environment
       run: |
         cmake -E make_directory toolsrc/build
-        CFLAGS=-Wno-error
-        CXXFLAGS=-Wno-error
+        export CFLAGS=-Wno-error
+        export CXXFLAGS=-Wno-error
         cmake -S toolsrc -B toolsrc/build -DCMAKE_BUILD_TYPE=Release
       # -DCMAKE_CONFIGURATION_TYPES=Debug;Release 
     - name: Build
