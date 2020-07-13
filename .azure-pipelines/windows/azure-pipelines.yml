@@ -159,9 +159,9 @@ jobs:
       artifact: '${{ parameters.triplet }}'
 #      patterns: '*.zip'
       path: '$(Build.SourcesDirectory)\archives'
-  - task: YandexDiskPublishTask@0
-    inputs:
-      contents: '**'
-      sourcepath: '$(Build.SourcesDirectory)\archives'
-      destpath: 'azure/vcpkg'
-      oauthtoken: '$(YANDEX_API_KEY)'
+#  - task: YandexDiskPublishTask@0
+#    inputs:
+#      contents: '**'
+#      sourcepath: '$(Build.SourcesDirectory)\archives'
+#      destpath: 'azure/vcpkg'
+#      oauthtoken: '$(YANDEX_API_KEY)'
