@@ -25,7 +25,7 @@ jobs:
     - uses: actions/cache@master
       with:
         # A list of files, directories, and wildcard patterns to cache and restore
-        path: build/Release
+        path: ../Release
         # An explicit key for restoring and saving the cache
         #key: 
         # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
@@ -36,7 +36,7 @@ jobs:
         # Artifact name
         name: yasm.exe
         # A file, directory or wildcard pattern that describes what to upload
-        path: build/Release
+        path: ../Release
     
     
     
