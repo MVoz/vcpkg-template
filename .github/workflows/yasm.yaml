@@ -10,9 +10,16 @@ jobs:
     name: checkout yasm
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
       with:
         fetch-depth: 1
         ref: 'c9db6d70a9ab62ce58a1cf123f2007d7a3ccc528'
         submodules: 'recursive'
         repository: 'https://github.com/yasm/yasm'
+    - name: yasm build & install
+      run: |
+        cmake -E make_directory build
+        cmake -S toolsrc -B toolsrc/build -G"Ninja" -DCMAKE_BUILD_TYPE=Release
+        
+        
+        
