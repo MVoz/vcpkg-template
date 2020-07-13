@@ -1,0 +1,18 @@
+name: YASM
+
+on:
+  pull_request:
+    branches:
+    - '*'
+
+jobs:
+  translation:
+    name: checkout yasm
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+        ref: 'c9db6d70a9ab62ce58a1cf123f2007d7a3ccc528'
+        submodules: 'recursive'
+        repository: 'https://github.com/yasm/yasm'
