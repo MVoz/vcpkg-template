@@ -27,7 +27,7 @@ jobs:
         # A list of files, directories, and wildcard patterns to cache and restore
         path: '${{ github.workspace }}/artifact/yasm'
         # An explicit key for restoring and saving the cache
-        key: yasm
+        #key: yasm
         # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
         #restore-keys: # optional
     
@@ -36,10 +36,5 @@ jobs:
         # Artifact name
         name: 'yasm'
         # A file, directory or wildcard pattern that describes what to upload
-        path: '${{ github.workspace }}/artifact/yasm'
-    
-    
-    
-    
-    
+        path: '${{ github.workspace }}/artifact/yasm/*'
     
