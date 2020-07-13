@@ -19,7 +19,7 @@ jobs:
     - name: yasm build & install
       run: |
         cmake -E make_directory build
-        cmake -S . -B build -G"Visual Studio 16 2019" -Ax64 -T"host=x64" -DCMAKE_BUILD_TYPE=Release -LA -DCMAKE_INSTALL_PREFIX="../artifact/yasm"
+        cmake -S . -B build -G"Visual Studio 16 2019" -Ax64 -T"host=x64" -DCMAKE_BUILD_TYPE=Release -LA -DCMAKE_INSTALL_PREFIX="artifact/yasm"
         cmake.exe --build build --config Release --target install
 
     - uses: actions/cache@master
