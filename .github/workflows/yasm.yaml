@@ -15,7 +15,7 @@ jobs:
         fetch-depth: 1
         ref: 'c9db6d70a9ab62ce58a1cf123f2007d7a3ccc528'
         submodules: 'recursive'
-        repository: 'https://github.com/yasm/yasm'
+        repository: 'yasm/yasm'
     - name: yasm build & install
       run: |
         cmake -E make_directory build
