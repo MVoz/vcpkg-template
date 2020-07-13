@@ -6,7 +6,7 @@ on:
     - '*'
 
 jobs:
-  translation:
+  build-windows:
     name: checkout yasm
     runs-on: windows-latest
     steps:
@@ -19,7 +19,27 @@ jobs:
     - name: yasm build & install
       run: |
         cmake -E make_directory build
-        cmake -S toolsrc -B toolsrc/build -G"Ninja" -DCMAKE_BUILD_TYPE=Release
-        
-        
-        
+        cmake -S . -B build -G"Visual Studio 16 2019" -Ax64 -T"host=x64" -DCMAKE_BUILD_TYPE=Release -LA -DCMAKE_INSTALL_PREFIX="../Release"
+        cmake.exe --build build --config Release --target install
+
+    - uses: actions/cache@master
+      with:
+        # A list of files, directories, and wildcard patterns to cache and restore
+        path: Release
+        # An explicit key for restoring and saving the cache
+        #key: 
+        # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
+        #restore-keys: # optional
+    
+    - uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: yasm.exe
+        # A file, directory or wildcard pattern that describes what to upload
+        path: Release
+    
+    
+    
+    
+    
+    
