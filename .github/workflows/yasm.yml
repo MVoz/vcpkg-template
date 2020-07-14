@@ -43,7 +43,17 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: 'yasm'
-        path: '${{ github.workspace }}/artifact/yasm'
+        path: '${{ github.workspace }}/tmp/artifact'
+
+    - uses: TheDoctor0/zip-release@0.4.1
+      id: zip_release
+      with:
+        # Filename for archive
+        filename: 'yasm.zip'
+        # Base path for archive files
+        path: '${{ github.workspace }}/tmp/artifact'
+        # Working directory before zipping
+        directory: '${{ github.workspace }}/tmp'
 
     - name: Upload to Release
       id: upload_release_asset
@@ -51,8 +61,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-#        upload_url: ${{ steps.download_artifact.outputs.upload_url }}
-        asset_path: '${{ github.workspace }}/artifact/yasm'
-        asset_name: 'yasm'
+        upload_url: ${{ steps.zip_release.outputs.upload_url }}
+        asset_path: '${{ github.workspace }}/tmp'
+        asset_name: 'yasm.zip'
         asset_content_type: application/zip 
 
