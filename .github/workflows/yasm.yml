@@ -31,7 +31,7 @@ jobs:
         # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
         #restore-keys: # optional
     
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@master
       with:
         # Artifact name
         name: 'yasm'
@@ -43,14 +43,24 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-windows
     steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: 1
+        ref: 'c9db6d70a9ab62ce58a1cf123f2007d7a3ccc528'
+        submodules: 'recursive'
+        repository: 'yasm/yasm'
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1.0.0
+      uses: actions/create-release@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
+        body: |
+          Changes in this Release
+          - First Change
+          - Second Change
         draft: false
         prerelease: false
 
@@ -60,14 +70,14 @@ jobs:
     needs: release
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@master
       with:
         name: 'yasm'
         path: '${{ github.workspace }}/artifact/yasm'
 
     - name: Upload to Release
       id: upload_to_release
-      uses: actions/upload-release-asset@v1.0.1
+      uses: actions/upload-release-asset@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
