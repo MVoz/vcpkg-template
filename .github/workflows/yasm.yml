@@ -38,3 +38,33 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: '${{ github.workspace }}/artifact/yasm/*'
     
+  publish:
+    if: contains(github.ref, 'tags/v')
+    runs-on: windows-latest
+    needs: build-windows
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: 'yasm'
+        path: ./
+
+    - name: Download URL
+      uses: actions/download-artifact@v1
+      with:
+        name: upload_url
+        path: ./
+    - id: set_upload_url
+      run: |
+        upload_url=`cat ./upload_url`
+        echo ::set-output name=upload_url::$upload_url
+    - name: Upload to Release
+      id: upload_to_release
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.set_upload_url.outputs.upload_url }}
+        asset_path: ./yasm
+        asset_name: 'yasm'
+        asset_content_type: application/zip 
