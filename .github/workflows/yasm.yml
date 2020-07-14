@@ -51,7 +51,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.download_artifact.outputs.upload_url }}
+#        upload_url: ${{ steps.download_artifact.outputs.upload_url }}
         asset_path: '${{ github.workspace }}/artifact/yasm'
         asset_name: 'yasm'
         asset_content_type: application/zip 
