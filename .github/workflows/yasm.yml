@@ -39,7 +39,7 @@ jobs:
         path: '${{ github.workspace }}/artifact/yasm/*'
   release:
 #    if: contains(github.ref, 'tags/v')
-    if: contains(github.ref, 'v*')
+    if: contains(github.ref)
     runs-on: ubuntu-latest
     needs: build-windows
     steps:
@@ -55,9 +55,9 @@ jobs:
         prerelease: false
 
   publish:
-    if: contains(github.ref, 'v*')
+    if: contains(github.ref)
     runs-on: windows-latest
-#    needs: release
+    needs: release
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v1
