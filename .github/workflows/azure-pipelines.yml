@@ -1,8 +1,10 @@
-name: workflow-azure-pipelines 
-on:
+name: workflow-azure-pipelines
+
+#on:
   pull_request:
     branches:
     - '*'
+
 jobs:
  deploy-using-azure-pipelines:
   timeout-minutes: 1440
