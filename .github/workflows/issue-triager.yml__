@@ -2,7 +2,8 @@
 # This action labels and assigns newly opened issues
 
 name: Issue triager
-on:
+
+#on:
   issues:
     types: [opened]
 
