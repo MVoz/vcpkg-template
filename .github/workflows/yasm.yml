@@ -48,7 +48,6 @@ jobs:
     - run: |
         cd '${{ github.workspace }}/tmp/artifact'
         tar.exe -zcf yasm.tar.gzip *
-
     - name: Upload to Release
       id: upload_release_asset
       uses: actions/upload-release-asset@master
@@ -58,5 +57,4 @@ jobs:
         upload_url: ${{ steps.zip_release.outputs.upload_url }}
         asset_path: '${{ github.workspace }}/tmp/artifact'
         asset_name: 'yasm.tar.gzip'
-        asset_content_type: application/gzip 
-
+        asset_content_type: application/gzip
