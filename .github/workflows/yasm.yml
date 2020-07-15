@@ -32,29 +32,23 @@ jobs:
         #restore-keys: # optional
     
     - uses: actions/upload-artifact@master
+      id: upload_artifact
       with:
         # Artifact name
         name: 'yasm'
         # A file, directory or wildcard pattern that describes what to upload
         path: '${{ github.workspace }}/artifact/yasm/*'
-
-    - name: Download artifact
-      id: download_artifact
-      uses: actions/download-artifact@master
-      with:
-        name: 'yasm'
-        path: '${{ github.workspace }}/tmp/artifact'
-
     - run: |
-        cd cd '/tmp/artifact'
+        cd '/artifact/yasm'
         tar.exe -zcf yasm.tar.gzip *
+
     - name: Upload to Release
       id: upload_release_asset
       uses: actions/upload-release-asset@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.download_artifact.outputs.upload_url }}
-        asset_path: '${{ github.workspace }}/tmp/artifact'
+        upload_url: ${{ steps.upload_artifact.outputs.upload_url }}
+        asset_path: '${{ github.workspace }}/artifact/yasm'
         asset_name: 'yasm.tar.gzip'
         asset_content_type: application/gzip
