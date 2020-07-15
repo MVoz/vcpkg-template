@@ -1,6 +1,6 @@
 name: Windows Ruby msys2
 
-on: [push, pull_request]
+#on: [push, pull_request]
 
 jobs:
   msys2:
