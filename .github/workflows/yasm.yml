@@ -52,4 +52,3 @@ jobs:
         asset_path: '${{ github.workspace }}/artifact/yasm'
         asset_name: 'yasm.tar.gzip'
         asset_content_type: application/gzip
-
