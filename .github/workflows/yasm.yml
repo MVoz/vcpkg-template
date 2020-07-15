@@ -39,7 +39,7 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: '${{ github.workspace }}/artifact/yasm/*'
     - run: |
-        cd '/artifact/yasm'
+        cd '${{ github.workspace }}/artifact/yasm'
         tar.exe -zcf yasm.tar.gzip *
 
     - name: Upload to Release
