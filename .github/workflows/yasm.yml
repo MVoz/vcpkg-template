@@ -1,9 +1,6 @@
 name: YASM
 
-on:
-  pull_request:
-    branches:
-    - '*'
+on 
 
 jobs:
   build-windows:
