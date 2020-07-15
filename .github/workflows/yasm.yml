@@ -1,9 +1,9 @@
 name: YASM
 
 on:
+  push:
   pull_request:
-    branches:
-    - '*'
+  issues:
 
 jobs:
   build-windows:
