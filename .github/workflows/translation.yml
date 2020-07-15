@@ -1,6 +1,6 @@
 name: Translation
 
-on: push
+#on: push
 
 jobs:
   translation:
