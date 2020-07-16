@@ -47,7 +47,7 @@ jobs:
 
 
 #    - name: Load Release URL File from release job
-#      uses: actions/download-artifact@v1
+#      uses: actions/download-artifact@master
 #      with:
 #        name: 'yasm'
 #        path: '${{ github.workspace }}/artifact/yasm'
@@ -57,7 +57,14 @@ jobs:
 #      run: |
 #        value=`cat yasm/yasm.txt`
 #        echo ::set-output name=upload_url::$value
-
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+#        tag_name: ${{ github.ref }}
+        release_name: Release 7
 
     - name: Upload to Release
       id: upload_release_asset
@@ -65,7 +72,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ github.event.release.upload_url }}
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: '${{ github.workspace }}/artifact/yasm/yasm.tar.gzip'
         asset_name: 'yasm.tar.gzip'
         asset_content_type: application/gzip
