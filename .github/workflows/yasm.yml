@@ -2,11 +2,11 @@ name: YASM
 
 on:
   push:
-  pull_request:
-  issues:
-  release:
-    types:
-      - created
+#  pull_request:
+#  issues:
+#  release:
+#    types:
+#      - created
 
 jobs:
   build-windows:
@@ -63,14 +63,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ github.sha }}
+        release_name: PreRelease ${{ github.sha }}
         body: |
           Changes in this Release
           - First Change
           - Second Change
         draft: false
-        prerelease: false
+        prerelease: true
 
     - name: Upload to Release
       id: upload_release_asset
