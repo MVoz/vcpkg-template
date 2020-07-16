@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
   issues:
+  release:
+    types:
+      - created
 
 jobs:
   build-windows:
@@ -43,17 +46,17 @@ jobs:
         tar.exe -zcf yasm.tar.gzip *
 
 
-    - name: Load Release URL File from release job
-      uses: actions/download-artifact@v1
-      with:
-        name: 'yasm'
-        path: '${{ github.workspace }}/artifact/yasm'
-    - name: Get Release File Name & Upload URL
-      id: get_release_info
-      shell: bash
-      run: |
-        value=`cat yasm/yasm.txt`
-        echo ::set-output name=upload_url::$value
+#    - name: Load Release URL File from release job
+#      uses: actions/download-artifact@v1
+#      with:
+#        name: 'yasm'
+#        path: '${{ github.workspace }}/artifact/yasm'
+#    - name: Get Release File Name & Upload URL
+#      id: get_release_info
+#      shell: bash
+#      run: |
+#        value=`cat yasm/yasm.txt`
+#        echo ::set-output name=upload_url::$value
 
 
     - name: Upload to Release
@@ -62,7 +65,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.get_release_info.outputs.upload_url }}
+        upload_url: ${{ github.event.release.upload_url }}
         asset_path: '${{ github.workspace }}/artifact/yasm/yasm.tar.gzip'
         asset_name: 'yasm.tar.gzip'
         asset_content_type: application/gzip
