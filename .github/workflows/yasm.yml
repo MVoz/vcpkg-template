@@ -32,7 +32,7 @@ jobs:
         #restore-keys: # optional
     
     - uses: actions/upload-artifact@master
-      id: get_release_info
+#      id: get_release_info
       with:
         # Artifact name
         name: 'yasm'
@@ -41,8 +41,18 @@ jobs:
     - run: |
         cd '${{ github.workspace }}/artifact/yasm'
         tar.exe -zcf yasm.tar.gzip *
+
+
+    - name: Load Release URL File from release job
+      uses: actions/download-artifact@v1
+      with:
+        name: release_url
+    - name: Get Release File Name & Upload URL
+      id: get_release_info
+      run: |
         value=`cat release_url/release_url.txt`
         echo ::set-output name=upload_url::$value
+
 
     - name: Upload to Release
       id: upload_release_asset
