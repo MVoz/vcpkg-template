@@ -46,7 +46,7 @@ jobs:
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
-        name: 'release_url'
+        name: 'yasm.tar.gzip'
         path: '${{ github.workspace }}/artifact/yasm'
 #        artifact: 'yasm.tar.gzip'
 
