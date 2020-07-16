@@ -56,8 +56,9 @@ jobs:
 
     - name: Get Release File Name & Upload URL
       id: get_release_info
+    - shell: bash
       run: |
-        value=`type yasm/yasm.txt`
+        value=`cat yasm/yasm.txt`
         echo ::set-output name=upload_url::$value
 
 
