@@ -48,15 +48,9 @@ jobs:
       with:
         name: 'yasm'
         path: '${{ github.workspace }}/artifact/yasm'
-#        artifact: 'yasm.tar.gzip'
-
-##[debug]Input 'artifact': ''
-##[debug]Input 'name': 'release_url'
-##[debug]Input 'path': ''
-
     - name: Get Release File Name & Upload URL
       id: get_release_info
-    - shell: bash
+      shell: bash
       run: |
         value=`cat yasm/yasm.txt`
         echo ::set-output name=upload_url::$value
