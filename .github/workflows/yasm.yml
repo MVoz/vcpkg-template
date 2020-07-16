@@ -41,6 +41,7 @@ jobs:
     - run: |
         cd '${{ github.workspace }}/artifact/yasm'
         tar.exe -zcf yasm.tar.gzip *
+        value=`cat release_url/release_url.txt`
         echo ::set-output name=upload_url::$value
 
     - name: Upload to Release
