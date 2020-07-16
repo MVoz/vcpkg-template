@@ -48,7 +48,7 @@ jobs:
       with:
         name: 'release_url'
         path: '${{ github.workspace }}/artifact/yasm'
-        artifact: 'yasm.tar.gzip'
+#        artifact: 'yasm.tar.gzip'
 
 ##[debug]Input 'artifact': ''
 ##[debug]Input 'name': 'release_url'
