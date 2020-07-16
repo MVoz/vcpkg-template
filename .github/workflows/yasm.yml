@@ -63,7 +63,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-#        tag_name: ${{ github.ref }}
+        tag_name: 7
         release_name: Release 7
 
     - name: Upload to Release
