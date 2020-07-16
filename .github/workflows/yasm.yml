@@ -46,7 +46,7 @@ jobs:
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
-        name: 'yasm.tar.gzip'
+        name: 'yasm'
         path: '${{ github.workspace }}/artifact/yasm'
 #        artifact: 'yasm.tar.gzip'
 
@@ -57,7 +57,7 @@ jobs:
     - name: Get Release File Name & Upload URL
       id: get_release_info
       run: |
-        value=`cat release_url/release_url.txt`
+        value=`cat yasm/yasm.txt`
         echo ::set-output name=upload_url::$value
 
 
