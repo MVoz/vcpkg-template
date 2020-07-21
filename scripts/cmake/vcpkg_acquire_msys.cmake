@@ -143,7 +143,7 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
     endif()
 	
     vcpkg_execute_required_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "rm -r /etc/pacman.d/gnupg/"
       WORKING_DIRECTORY ${TOOLPATH}
     )
     vcpkg_execute_required_process(
@@ -152,7 +152,7 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
     )
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman-key --init;pacman-key --populate"
       WORKING_DIRECTORY ${TOOLPATH}
     )
     vcpkg_execute_required_process(
@@ -160,7 +160,7 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       WORKING_DIRECTORY ${TOOLPATH}
     )
 #    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "gpgconf --homedir /etc/pacman.d/gnupg --kill all"
 #      WORKING_DIRECTORY ${TOOLPATH}
 #    )
     vcpkg_execute_required_process(
