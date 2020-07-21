@@ -53,20 +53,21 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
   if(_vam_HOST_ARCHITECTURE STREQUAL "AMD64")
     set(TOOLSUBPATH msys64)
     set(URLS
-      "https://sourceforge.net/projects/msys2/files/Base/x86_64/msys2-base-x86_64-20190524.tar.xz/download"
-      "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20190524.tar.xz"
+	  "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200602.tar.xz"
+      "https://github.com/msys2/msys2-installer/releases/download/2020-06-02/msys2-base-x86_64-20200602.tar.xz"
+      "https://sourceforge.net/projects/msys2/files/Base/x86_64/msys2-base-x86_64-20200602.tar.xz/download"
     )
-    set(ARCHIVE "msys2-base-x86_64-20190524.tar.xz")
-    set(HASH 50796072d01d30cc4a02df0f9dafb70e2584462e1341ef0eff94e2542d3f5173f20f81e8f743e9641b7528ea1492edff20ce83cb40c6e292904905abe2a91ccc)
+    set(ARCHIVE "msys2-base-x86_64-20200602.tar.xz")
+    set(HASH ea754c9ea9fc7ae7051c15f97f5ee95dc628bf12af3713f941991a6ab3169f4c23767d132fa6640338a449648998dc4013c6f094f7ce2fe44c61caf276caf8c6)
     set(STAMP "initialized-msys2_64.stamp")
   else()
     set(TOOLSUBPATH msys32)
     set(URLS
-      "https://sourceforge.net/projects/msys2/files/Base/i686/msys2-base-i686-20190524.tar.xz/download"
-      "http://repo.msys2.org/distrib/i686/msys2-base-i686-20190524.tar.xz"
+      "http://repo.msys2.org/distrib/i686/msys2-base-i686-20200517.tar.xz"
+      "https://github.com/msys2/msys2-installer/releases/download/2020-05-17/msys2-base-i686-20200517.tar.xz"
     )
-    set(ARCHIVE "msys2-base-i686-20190524.tar.xz")
-    set(HASH b26d7d432e1eabe2138c4caac5f0a62670f9dab833b9e91ca94b9e13d29a763323b0d30160f09a381ac442b473482dac799be0fea5dd7b28ea2ddd3ba3cd3c25)
+    set(ARCHIVE "msys2-base-i686-20200517.tar.xz")
+    set(HASH 74786326c07c1cf2b11440cbd7caf947c2a32ebcc2b5bb362301d12327a2108182f57e98c217487db75bf6f0e3a4577291933e025b9b170e37848ec0b51a134c)
     set(STAMP "initialized-msys2_32.stamp")
   endif()
 
@@ -88,37 +89,9 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       WORKING_DIRECTORY ${TOOLPATH}
     )
     _execute_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"#;PATH=/usr/bin;pacman-key --refresh-keys"
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    _execute_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate;PATH=/usr/bin;pacman-key --refresh-keys"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
-
-#    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --overwrite '*'"
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
-
-#       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm && ps -ef | grep 'gpg-agent' | grep -v grep | awk '{print `$2}' | xargs -r kill -9"
-#       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --needed --noconfirm --ask=20 --disable-download-timeout --overwrite '*'"
-#       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --disable-download-timeout --overwrite '*'"
-
-#    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
-
-#    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Rc dash --noconfirm"
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
-#    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
-
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Sydd --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' pacman"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -127,12 +100,6 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    # Remove database lock
-    SET(DB_LOCK_PATH ${PATH_TO_ROOT}/var/lib/pacman/db.lck)
-    if (EXISTS "${DB_LOCK_PATH}")
-      message(STATUS "${DB_LOCK_PATH} exists --- deleting it")
-      file(REMOVE "${DB_LOCK_PATH}")
-    endif()
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Syuu --noconfirm --ask=20 --disable-download-timeout --overwrite '*'"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -167,42 +134,61 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
     string(REPLACE ";" " " _am_PACKAGES "${_am_PACKAGES}")
     set(_ENV_ORIGINAL $ENV{PATH})
     set(ENV{PATH} ${PATH_TO_ROOT}/usr/bin)
+	
     # Remove database lock
     SET(DB_LOCK_PATH ${PATH_TO_ROOT}/var/lib/pacman/db.lck)
     if (EXISTS "${DB_LOCK_PATH}")
       message(STATUS "${DB_LOCK_PATH} exists --- deleting it")
       file(REMOVE "${DB_LOCK_PATH}")
     endif()
+	
+    vcpkg_execute_required_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    vcpkg_execute_required_process(
+      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    vcpkg_execute_required_process(
+      ALLOW_IN_DOWNLOAD_MODE
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    vcpkg_execute_required_process(
+      COMMAND taskkill /F /IM dirmngr.exe /fi "memusage gt 2"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+#    _execute_process(
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;gpgconf --homedir /etc/pacman.d/gnupg --kill all"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
+    vcpkg_execute_required_process(
+      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
 #      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman -Su --noconfirm --needed --overwrite '*' `pacman -Ssq ${_am_PACKAGES}` "
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman -Syyuu --noconfirm --needed --overwrite '*' ${_am_PACKAGES} "
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman -S --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' ${_am_PACKAGES} "
       WORKING_DIRECTORY ${TOOLPATH}
       LOGNAME msys-pacman-${TARGET_TRIPLET}
     )
-    _execute_process(
+    vcpkg_execute_required_process(
       COMMAND taskkill /F /IM gpg-agent.exe /fi "memusage gt 2"
       WORKING_DIRECTORY ${TOOLPATH}
     )
-
     set(ENV{PATH} "${_ENV_ORIGINAL}")
+
     message(STATUS "Acquiring MSYS Packages... OK")
   endif()
 
-#  # Deal with a stale process created by MSYS
-#  if (NOT VCPKG_CMAKE_SYSTEM_NAME OR VCPKG_CMAKE_SYSTEM_NAME STREQUAL "WindowsStore")
 #      vcpkg_execute_required_process(
 #          ALLOW_IN_DOWNLOAD_MODE
 #          COMMAND TASKKILL /F /IM gpg-agent.exe /fi "memusage gt 2"
 #          WORKING_DIRECTORY ${TOOLPATH}
 #      )
-#  endif()
-
-#    _execute_process(
-#      COMMAND taskkill /F /IM gpg-agent.exe
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
 
   set(${PATH_TO_ROOT_OUT} ${PATH_TO_ROOT} PARENT_SCOPE)
 endfunction()
