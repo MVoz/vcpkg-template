@@ -91,8 +91,8 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND ${CMAKE_COMMAND} -E tar xzf ${ARCHIVE_PATH}
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    vcpkg_execute_required_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "rm -r /etc/pacman.d/gnupg/"
+    _execute_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;rm -r /etc/pacman.d/gnupg/"
       WORKING_DIRECTORY ${TOOLPATH}
     )
     _execute_process(
