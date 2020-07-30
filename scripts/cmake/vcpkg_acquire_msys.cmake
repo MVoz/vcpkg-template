@@ -91,10 +91,14 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND ${CMAKE_COMMAND} -E tar xzf ${ARCHIVE_PATH}
       WORKING_DIRECTORY ${TOOLPATH}
     )
-#    _execute_process(
-#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"#;PATH=/usr/bin;pacman-key --refresh-keys"
-#      WORKING_DIRECTORY ${TOOLPATH}
-#    )
+    vcpkg_execute_required_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "rm -r /etc/pacman.d/gnupg/"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
+    _execute_process(
+      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"#;PATH=/usr/bin;pacman-key --refresh-keys"
+      WORKING_DIRECTORY ${TOOLPATH}
+    )
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Sydd --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' pacman"
       WORKING_DIRECTORY ${TOOLPATH}
