@@ -1,6 +1,7 @@
 include(execute_process)
 #include(vcpkg_acquire_depot_tools)
 include(vcpkg_acquire_msys)
+include(vcpkg_acquire_cygwin)
 include(vcpkg_add_to_path)
 include(vcpkg_check_features)
 include(vcpkg_check_linkage)
