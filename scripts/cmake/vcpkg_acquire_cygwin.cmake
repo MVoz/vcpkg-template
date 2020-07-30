@@ -93,33 +93,33 @@ function(vcpkg_acquire_cygwin PATH_TO_ROOT_OUT)
     )
 
     file(REMOVE_RECURSE ${TOOLPATH}/${TOOLSUBPATH})
-	file(MAKE_DIRECTORY ${PATH_TO_ROOT})
+    file(MAKE_DIRECTORY ${PATH_TO_ROOT})
 	
-	if(DEFINED NOEXTRACT)
-	  if(DEFINED _vfa_RENAME)
-	    file(INSTALL ${CYGWIN_SETUP} DESTINATION ${PATH_TO_ROOT} RENAME ${_vfa_RENAME} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-	  else()
-	    file(COPY ${CYGWIN_SETUP} DESTINATION ${PATH_TO_ROOT} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
-	  endif()
-	endif()
+    if(DEFINED NOEXTRACT)
+      if(DEFINED _vfa_RENAME)
+        file(INSTALL ${CYGWIN_SETUP} DESTINATION ${PATH_TO_ROOT} RENAME ${_vfa_RENAME} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+      else()
+        file(COPY ${CYGWIN_SETUP} DESTINATION ${PATH_TO_ROOT} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+      endif()
+    endif()
 
 #    _execute_process(
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
       COMMAND ${CYGWIN_SETUP} 
-	    --no-admin --prune-install --quiet-mode
-		--disable-buggy-antivirus --upgrade-also --wait
-	    --root "${PATH_TO_ROOT}"
-		--no-desktop --no-shortcuts --no-startmenu --download
-		--pubkey "http://cygwinports.org/ports.gpg"
-		--arch "x86_64"# or x86
-#		--package-manager
-		--local-install "${PATH_TO_ROOT}"
-		--local-package-dir "${DOWNLOADS}"
-#		--only-site
-		--site "http://cygwin.mirror.constant.com"
-		--packages "check,wget,curl,tar,gawk,ca-certificates,gnupg,which"#install wget,tar,gawk to use apt-cyg
-		--verbose
+        --no-admin --prune-install --quiet-mode
+        --disable-buggy-antivirus --upgrade-also --wait
+        --root "${PATH_TO_ROOT}"
+        --no-desktop --no-shortcuts --no-startmenu --download
+        --pubkey "http://cygwinports.org/ports.gpg"
+        --arch "x86_64"# or x86
+#        --package-manager
+        --local-install "${PATH_TO_ROOT}"
+        --local-package-dir "${DOWNLOADS}"
+#        --only-site
+        --site "http://cygwin.mirror.constant.com"
+        --packages "check,wget,curl,tar,gawk,ca-certificates,gnupg,which"#install wget,tar,gawk to use apt-cyg
+        --verbose
       WORKING_DIRECTORY ${TOOLPATH}
 #      RESULT_VARIABLE cygwin-setup-${TARGET_TRIPLET}
       LOGNAME cygwin-setup-${TARGET_TRIPLET}
