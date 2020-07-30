@@ -53,12 +53,15 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
   if(_vam_HOST_ARCHITECTURE STREQUAL "AMD64")
     set(TOOLSUBPATH msys64)
     set(URLS
-      "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200602.tar.xz"
-      "https://github.com/msys2/msys2-installer/releases/download/2020-06-02/msys2-base-x86_64-20200602.tar.xz"
-      "https://sourceforge.net/projects/msys2/files/Base/x86_64/msys2-base-x86_64-20200602.tar.xz/download"
+#      "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200602.tar.xz"
+#      "https://github.com/msys2/msys2-installer/releases/download/2020-06-02/msys2-base-x86_64-20200602.tar.xz"
+#      "https://sourceforge.net/projects/msys2/files/Base/x86_64/msys2-base-x86_64-20200602.tar.xz/download"
+      "https://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200720.tar.xz"
+      "https://github.com/msys2/msys2-installer/releases/download/2020-07-20/msys2-base-x86_64-20200720.tar.xz"
     )
     set(ARCHIVE "msys2-base-x86_64-20200602.tar.xz")
-    set(HASH ea754c9ea9fc7ae7051c15f97f5ee95dc628bf12af3713f941991a6ab3169f4c23767d132fa6640338a449648998dc4013c6f094f7ce2fe44c61caf276caf8c6)
+    set(HASH 1d0841107ded2c7917ebe1810175b940dd9ee9478200d535af0c99b235eb1102659c08cbe0f760e6c1c2a06ecf2f49537c7e0470662a99b72f0f8f0011b5242d)
+#    set(HASH ea754c9ea9fc7ae7051c15f97f5ee95dc628bf12af3713f941991a6ab3169f4c23767d132fa6640338a449648998dc4013c6f094f7ce2fe44c61caf276caf8c6)
     set(STAMP "initialized-msys2_64.stamp")
   else()
     set(TOOLSUBPATH msys32)
