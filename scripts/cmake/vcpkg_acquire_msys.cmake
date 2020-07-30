@@ -53,7 +53,7 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
   if(_vam_HOST_ARCHITECTURE STREQUAL "AMD64")
     set(TOOLSUBPATH msys64)
     set(URLS
-	  "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200602.tar.xz"
+      "http://repo.msys2.org/distrib/x86_64/msys2-base-x86_64-20200602.tar.xz"
       "https://github.com/msys2/msys2-installer/releases/download/2020-06-02/msys2-base-x86_64-20200602.tar.xz"
       "https://sourceforge.net/projects/msys2/files/Base/x86_64/msys2-base-x86_64-20200602.tar.xz/download"
     )
@@ -88,10 +88,10 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       COMMAND ${CMAKE_COMMAND} -E tar xzf ${ARCHIVE_PATH}
       WORKING_DIRECTORY ${TOOLPATH}
     )
-    _execute_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"#;PATH=/usr/bin;pacman-key --refresh-keys"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
+#    _execute_process(
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman-key --init;PATH=/usr/bin;pacman-key --populate"#;PATH=/usr/bin;pacman-key --refresh-keys"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
     _execute_process(
       COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "PATH=/usr/bin;pacman -Sydd --noconfirm --needed --ask=20 --disable-download-timeout --overwrite '*' pacman"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -142,19 +142,19 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
       file(REMOVE "${DB_LOCK_PATH}")
     endif()
 	
-    vcpkg_execute_required_process(
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "rm -r /etc/pacman.d/gnupg/"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
-    vcpkg_execute_required_process(
-      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
-    vcpkg_execute_required_process(
-      ALLOW_IN_DOWNLOAD_MODE
-      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman-key --init && pacman-key --populate"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
+#    vcpkg_execute_required_process(
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "rm -r /etc/pacman.d/gnupg/"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
+#    vcpkg_execute_required_process(
+#      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
+#    vcpkg_execute_required_process(
+#      ALLOW_IN_DOWNLOAD_MODE
+#      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "pacman-key --init && pacman-key --populate"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
     vcpkg_execute_required_process(
       COMMAND taskkill /F /IM dirmngr.exe /fi "memusage gt 2"
       WORKING_DIRECTORY ${TOOLPATH}
@@ -163,10 +163,10 @@ function(vcpkg_acquire_msys PATH_TO_ROOT_OUT)
 #      COMMAND ${PATH_TO_ROOT}/usr/bin/bash.exe --noprofile --norc -c "gpgconf --homedir /etc/pacman.d/gnupg --kill all"
 #      WORKING_DIRECTORY ${TOOLPATH}
 #    )
-    vcpkg_execute_required_process(
-      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
-      WORKING_DIRECTORY ${TOOLPATH}
-    )
+#    vcpkg_execute_required_process(
+#      COMMAND taskkill /f /fi "MODULES eq msys-2.0.dll"
+#      WORKING_DIRECTORY ${TOOLPATH}
+#    )
 
     vcpkg_execute_required_process(
       ALLOW_IN_DOWNLOAD_MODE
