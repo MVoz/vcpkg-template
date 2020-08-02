@@ -74,11 +74,11 @@ function(vcpkg_acquire_cygwin PATH_TO_ROOT_OUT)
   
   set(BASH ${PATH_TO_ROOT}/bin/bash.exe)
   set(BASH_EXECUTABLE ${BASH})
-  set(WGET ${PATH_TO_ROOT}/bin/wget.exe)
-  set(CURL ${PATH_TO_ROOT}/bin/curl.exe)
+#  set(WGET ${PATH_TO_ROOT}/bin/wget.exe)
+#  set(CURL ${PATH_TO_ROOT}/bin/curl.exe)
 
-  set(CYG-GET ${PATH_TO_ROOT}/bin/cyg-get)
-  set(APT-CYG ${PATH_TO_ROOT}/bin/apt-cyg)
+  set(CYG-GET "${BASH_EXECUTABLE} --login -c /usr/bin/cyg-get")
+  set(APT-CYG "${BASH_EXECUTABLE} --login -c /usr/bin/apt-cyg")
 
 #	find_program(BASH_EXECUTABLE bash.exe)
 #	message(STATUS "BASH_EXECUTABLE ${BASH_EXECUTABLE}")
