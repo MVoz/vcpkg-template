@@ -112,7 +112,7 @@ function(vcpkg_acquire_cygwin PATH_TO_ROOT_OUT)
         --root "${PATH_TO_ROOT}"
         --no-desktop --no-shortcuts --no-startmenu --download
         --pubkey "http://cygwinports.org/ports.gpg"
-        --arch "x86_64"# or x86
+#        --arch "x86_64"# or x86
 #        --package-manager
         --local-install "${PATH_TO_ROOT}"
         --local-package-dir "${DOWNLOADS}"
