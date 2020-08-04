@@ -21,10 +21,10 @@ vcpkg_download_distfile(MOZILLABUILDSETUP
 set(MOZILLABUILD "${CURRENT_BUILDTREES_DIR}/moz_build")
 
 vcpkg_find_acquire_program(7Z)
-#_execute_process(
-#  COMMAND ${7Z} x -tNsis "${MOZILLABUILDSETUP}" "-o${CURRENT_BUILDTREES_DIR}/moz_build" -y -bso0 -bsp0
-#  WORKING_DIRECTORY ${SOURCE_PATH}
-#)
+_execute_process(
+  COMMAND ${7Z} x -tNsis "${MOZILLABUILDSETUP}" "-o${CURRENT_BUILDTREES_DIR}/moz_build" -y -bso0 -bsp0
+  WORKING_DIRECTORY ${SOURCE_PATH}
+)
 
 vcpkg_acquire_msys(MSYS_ROOT PACKAGES pkg-config)
 find_program(PKGCONFIG_EXECUTABLE NAMES pkg-config HINTS ${MSYS_ROOT} PATH_SUFFIXES "usr/bin" NO_DEFAULT_PATH)
@@ -45,19 +45,11 @@ mark_as_advanced(FORCE PYTHON3_EXECUTABLE)
 find_program(TOOL_MAKENSIS NAMES "makensis-3.01" HINTS ${MOZILLABUILD} PATH_SUFFIXES "nsis-3.01" NO_DEFAULT_PATH)
 mark_as_advanced(FORCE TOOL_MAKENSIS)
 set(MAKENSIS_EXECUTABLE ${TOOL_MAKENSIS})
+
 get_filename_component(MOZMAKE_DIR "${MOZMAKE_EXECUTABLE}" DIRECTORY)
 vcpkg_add_to_path(${MOZMAKE_DIR})
 get_filename_component(MSYS_DIR "${BASH_EXECUTABLE}" DIRECTORY)
 vcpkg_add_to_path(${MSYS_DIR})
-
-message(STATUS ${PKGCONFIG_EXECUTABLE})
-message(STATUS ${MSYS_ROOT})
-
-message(STATUS ${PYTHON_EXECUTABLE})
-message(STATUS ${PYTHON3_EXECUTABLE})
-message(STATUS ${BASH_EXECUTABLE})
-message(STATUS ${MOZMAKE_EXECUTABLE})
-message(STATUS ${MOZILLABUILD})
 
 if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64" OR VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
   set(CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS} --host=x86_64-pc-mingw32 --target=x86_64-pc-mingw32 --enable-64bit")
