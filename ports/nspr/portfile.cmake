@@ -26,7 +26,10 @@ _execute_process(
   WORKING_DIRECTORY ${SOURCE_PATH}
 )
 
-vcpkg_acquire_msys(MSYS_ROOT PACKAGES pkg-config)
+vcpkg_acquire_msys(MSYS_ROOT)
+if(EXISTS ${MSYS_ROOT}/usr/bin/pkg-config.exe)
+  vcpkg_acquire_msys(MSYS_ROOT PACKAGES pkg-config)
+endif()
 find_program(PKGCONFIG_EXECUTABLE NAMES pkg-config HINTS ${MSYS_ROOT} PATH_SUFFIXES "usr/bin" NO_DEFAULT_PATH)
 mark_as_advanced(FORCE PKGCONFIG_EXECUTABLE)
 set(PKGCONFIG ${PKGCONFIG_EXECUTABLE})
@@ -53,6 +56,7 @@ vcpkg_add_to_path(${MSYS_DIR})
 
 if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64" OR VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
   set(CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS} --host=x86_64-pc-mingw32 --target=x86_64-pc-mingw32 --enable-64bit")
+  set(USE_64 "USE_64=1")
 else()
   set(CONFIGURE_OPTIONS "${CONFIGURE_OPTIONS} --host=i686-pc-mingw32 --target=i686-pc-mingw32")
 endif()
@@ -101,7 +105,7 @@ set(CONFIGURE_OPTIONS_DEBUG  "--enable-debug --disable-optimize --prefix=${CURRE
 if(NOT DEFINED VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL "release")
     message(STATUS "Package ${TARGET_TRIPLET}-rel")
     vcpkg_execute_build_process(
-        COMMAND ${BASH_EXECUTABLE} --noprofile --norc -c "${MOZMAKE_EXECUTABLE} -j1 USE_64=1 BUILD_OPT=1"# ${VCPKG_CONCURRENCY} - error Waiting for unfinished jobs....
+        COMMAND ${BASH_EXECUTABLE} --noprofile --norc -c "${MOZMAKE_EXECUTABLE} -j1 ${USE_64} BUILD_OPT=1"# ${VCPKG_CONCURRENCY} - error Waiting for unfinished jobs....
         WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
         LOGNAME "make-build-${TARGET_TRIPLET}-rel")
     vcpkg_execute_build_process(
@@ -113,7 +117,7 @@ endif()
 if(NOT DEFINED VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL "debug")
     message(STATUS "Package ${TARGET_TRIPLET}-dbg")
     vcpkg_execute_build_process(
-        COMMAND ${BASH_EXECUTABLE} --noprofile --norc -c "${MOZMAKE_EXECUTABLE} -j1 USE_64=1 USE_DEBUG_RTL=1"# ${VCPKG_CONCURRENCY} - error Waiting for unfinished jobs....
+        COMMAND ${BASH_EXECUTABLE} --noprofile --norc -c "${MOZMAKE_EXECUTABLE} -j1 ${USE_64} USE_DEBUG_RTL=1"# ${VCPKG_CONCURRENCY} - error Waiting for unfinished jobs....
         WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg"
         LOGNAME "make-build-${TARGET_TRIPLET}-dbg")
     vcpkg_execute_build_process(
