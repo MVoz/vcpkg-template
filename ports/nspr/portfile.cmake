@@ -94,7 +94,7 @@ set(CONFIGURE_OPTIONS_DEBUG  "--enable-debug --disable-optimize --prefix=${CURRE
 #        foreach(SOURCE_FILE ${NSPR_SOURCE_FILES})
 #          file(COPY ${SOURCE_FILE} DESTINATION "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
 #        endforeach()
-        file(MAKE_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel")
+        file(MAKE_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
         vcpkg_execute_required_process(
             COMMAND ${BASH_EXECUTABLE} --noprofile --norc -c "${SOURCE_PATH}/nspr/configure ${CONFIGURE_OPTIONS} ${CONFIGURE_OPTIONS_DEBUG}"
             WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg"
