@@ -27,7 +27,7 @@ _execute_process(
 )
 
 vcpkg_acquire_msys(MSYS_ROOT)
-if(EXISTS ${MSYS_ROOT}/usr/bin/pkg-config.exe)
+if(NOT ${MSYS_ROOT}/usr/bin/pkg-config.exe)
   vcpkg_acquire_msys(MSYS_ROOT PACKAGES pkg-config)
 endif()
 find_program(PKGCONFIG_EXECUTABLE NAMES pkg-config HINTS ${MSYS_ROOT} PATH_SUFFIXES "usr/bin" NO_DEFAULT_PATH)
