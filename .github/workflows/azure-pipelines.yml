@@ -1,6 +1,6 @@
 name: workflow-azure-pipelines
 
-#on:
+on:
   pull_request:
     branches:
     - '*'
