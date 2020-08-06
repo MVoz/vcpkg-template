@@ -20,14 +20,16 @@ vcpkg_download_distfile(MOZILLABUILDSETUP
 
 set(MOZILLABUILD "${CURRENT_BUILDTREES_DIR}/moz_build")
 
-vcpkg_find_acquire_program(7Z)
-_execute_process(
-  COMMAND ${7Z} x -tNsis "${MOZILLABUILDSETUP}" "-o${CURRENT_BUILDTREES_DIR}/moz_build" -y -bso0 -bsp0
-  WORKING_DIRECTORY ${SOURCE_PATH}
-)
+if(NOT EXISTS "${CURRENT_BUILDTREES_DIR}/moz_build")
+  vcpkg_find_acquire_program(7Z)
+  _execute_process(
+    COMMAND ${7Z} x -tNsis "${MOZILLABUILDSETUP}" "-o${CURRENT_BUILDTREES_DIR}/moz_build" -y -bso0 -bsp0
+    WORKING_DIRECTORY ${SOURCE_PATH}
+  )
+endif()
 
 vcpkg_acquire_msys(MSYS_ROOT)
-if(NOT ${MSYS_ROOT}/usr/bin/pkg-config.exe)
+if(NOT EXISTS "${MSYS_ROOT}/usr/bin/pkg-config.exe")
   vcpkg_acquire_msys(MSYS_ROOT PACKAGES pkg-config)
 endif()
 find_program(PKGCONFIG_EXECUTABLE NAMES pkg-config HINTS ${MSYS_ROOT} PATH_SUFFIXES "usr/bin" NO_DEFAULT_PATH)
