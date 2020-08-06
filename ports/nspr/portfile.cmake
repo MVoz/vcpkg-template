@@ -5,7 +5,6 @@ vcpkg_download_distfile(ARCHIVE
 #    SHA512 077ac3ffee81f5be8d6777c235db8f2d71f8813bc2baf9293a1745ad9a3918c5d8992a2c12614b606fdf556e063f6871c106d3a80f3c59b2c28553c7452eca4a
     SHA512 	2be539e6fd5ed8987874147a2bacc3f0b7177cdfddbb1a4f9e5f93575de871584b05fb56ca4e1ba5f7e53074cd4069310658f1559de0f38def208b087b6e6dca
 )
-
 vcpkg_extract_source_archive_ex(
     OUT_SOURCE_PATH SOURCE_PATH
     ARCHIVE ${ARCHIVE}
@@ -19,7 +18,6 @@ vcpkg_download_distfile(MOZILLABUILDSETUP
 )
 
 set(MOZILLABUILD "${CURRENT_BUILDTREES_DIR}/moz_build")
-
 if(NOT EXISTS "${CURRENT_BUILDTREES_DIR}/moz_build")
   vcpkg_find_acquire_program(7Z)
   _execute_process(
