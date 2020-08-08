@@ -1,3 +1,31 @@
+https://azure.microsoft.com/en-gb/services/devops/pipelines/
+https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser
+https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-windows?view=azure-devops
+
+https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml
+
+Windows Server 2019 with Visual Studio 2019
+windows-latest OR windows-2019
+
+Windows Server 2016 with Visual Studio 2017
+vs2017-win2016
+
+Ubuntu 20.04 (preview)
+ubuntu-20.04
+
+Ubuntu 18.04
+ubuntu-latest OR ubuntu-18.04
+
+Ubuntu 16.04
+ubuntu-16.04
+
+macOS X Mojave 10.14
+macOS-10.14
+
+macOS X Catalina 10.15
+macOS-latest OR macOS-10.15
+
+
 # Vcpkg
 
 ## Overview
