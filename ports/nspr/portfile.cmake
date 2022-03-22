@@ -19,7 +19,6 @@ vcpkg_download_distfile(MOZILLABUILDSETUP
 )
 
 set(MOZILLABUILD "${CURRENT_BUILDTREES_DIR}/moz_build")
-
 if(NOT EXISTS "${CURRENT_BUILDTREES_DIR}/moz_build")
   vcpkg_find_acquire_program(7Z)
   _execute_process(
